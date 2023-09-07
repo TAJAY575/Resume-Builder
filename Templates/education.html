@@ -1,0 +1,118 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_resume.css') }}">
+    <title>{% block title %}ResumeForm{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+                <h1>Resume Builder</h1>
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br><br>
+
+    <form action="" method="POST" id="resumeForm">
+        <div class="resumeinfo">
+            <h1><b>Educaton</b></h1>
+            <p>Start with your most recent educational institution.</p> <br>
+            <ul id="educationList">
+                <!-- The initial education fields -->
+                <li>
+                    {{ resume_form.schoolname.label }} <br>
+                    {{ resume_form.schoolname() }}
+                </li>
+                <li>
+                    {{ resume_form.degree.label }} <br>
+                    {{ resume_form.degree() }}
+                </li>
+                <li>
+                    {{ resume_form.start_date.label }} <br>
+                    {{ resume_form.start_date() }}
+                </li>
+                <li>
+                    {{ resume_form.end_date.label }} <br>
+                    {{ resume_form.end_date() }}
+                </li>
+            </ul><br>
+            <nextbutton type = "button" id="nextPageButton">Next</nextbutton>
+            <addbutton type="button" id="addEducationButton">+</addbutton>
+        </div>
+
+    </form>
+    <br><br>
+    <br><br><br><br><br><br>
+    <footer>
+        <div class="footer-content">
+            <ul class="social-links">
+                <li><a href="#"><img src="{{ url_for('static', filename='facebook-icon.png') }}" alt="Facebook"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='twitter-icon.png') }}" alt="Twitter"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='linkedin-icon.png') }}" alt="LinkedIn"></a></li>
+            </ul>
+        </div>
+    </footer>
+    
+
+    <script>
+            document.addEventListener("DOMContentLoaded", function () {
+        var nextPageButton = document.getElementById("nextPageButton");
+    
+        nextPageButton.addEventListener("click", function () {
+            // Redirect to the new page 
+            window.location.href = "/experience";
+        });
+    });
+
+
+       document.addEventListener("DOMContentLoaded", function () {
+    var educationList = document.getElementById("educationList");
+    var addEducationButton = document.getElementById("addEducationButton");
+
+    addEducationButton.addEventListener("click", function () {
+        var newEducationFields = document.createElement("ul");
+        newEducationFields.innerHTML = `
+            <br> <br> 
+            <li>
+                {{ resume_form.schoolname.label }} <br>
+                {{ resume_form.schoolname() }}
+            </li>
+            <li>
+                {{ resume_form.degree.label }} <br>
+                {{ resume_form.degree() }}
+            </li>
+            <li>
+                {{ resume_form.start_date.label }} <br>
+                {{ resume_form.start_date() }}
+            </li>
+            <li>
+                {{ resume_form.end_date.label }} <br>
+                {{ resume_form.end_date() }}
+            </li>
+            <li>
+                <deletebutton class="deleteEducationButton">Delete</deletebutton>
+            </li>
+        `;
+
+        educationList.appendChild(newEducationFields);
+        // Attach a click event to the newly added delete button
+        var deleteButton = newEducationFields.querySelector(".deleteEducationButton");
+        deleteButton.addEventListener("click", function () {
+            educationList.removeChild(newEducationFields);
+        });
+    });
+});
+
+    </script>
+</body2>
+</html>
+

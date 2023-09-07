@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_homepage.css') }}">
+    <title>{% block title %}Resume Builder{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo"> <h1>Resume Builder</h1>
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/resume">Create Resume</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
+        {% endblock %}
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <ul class="social-links">
+                <li><a href="#"><img src="{{ url_for('static', filename='facebook-icon.png') }}" alt="Facebook"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='twitter-icon.png') }}" alt="Twitter"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='linkedin-icon.png') }}" alt="LinkedIn"></a></li>
+            </ul>
+        </div>
+    </footer>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

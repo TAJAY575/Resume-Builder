@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_resume.css') }}">
+    <title>{% block title %}ResumeForm{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+                <h1>Resume Builder</h1>
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br><br>
+
+    <form action="" method="POST">
+        <div class="resumeinfo">
+            <h1><b>Personal Information</b></h1>
+            <ul>
+                <li>
+                    {{ resume_form.firstname.label }} <br>
+                    {{ resume_form.firstname() }}
+                </li>
+                <li>
+                    {{ resume_form.lastname.label }} <br>
+                    {{ resume_form.lastname() }}
+                </li>
+                <li>
+                    {{ resume_form.email.label }} <br>
+                    {{ resume_form.email() }}
+                </li>
+                <li>
+                    {{ resume_form.phonenumber.label }} <br>
+                    {{ resume_form.phonenumber() }}
+                </li>
+                <li>
+                    {{ resume_form.city.label }} <br>
+                    {{ resume_form.city() }}
+                </li>
+                <li>
+                    {{ resume_form.state.label }} <br>
+                    {{ resume_form.state() }}
+                </li>
+                <li>
+                    <nextbutton type = "button" id="nextPageButton">Next</nextbutton>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <br><br><br><br><br><br>
+
+    <footer>
+        <div class="footer-content">
+            <ul class="social-links">
+                <li><a href="#"><img src="{{ url_for('static', filename='facebook-icon.png') }}" alt="Facebook"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='twitter-icon.png') }}" alt="Twitter"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='linkedin-icon.png') }}" alt="LinkedIn"></a></li>
+            </ul>
+        </div>
+    </footer>
+    <br>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var nextPageButton = document.getElementById("nextPageButton");
+    
+        nextPageButton.addEventListener("click", function () {
+            // Redirect to the new page 
+            window.location.href = "/education";
+        });
+    });
+    </script>
+</body>
+</html>

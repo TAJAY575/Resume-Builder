@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles_resume.css') }}">
+    <title>{% block title %}ResumeForm{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo">
+                <h1>Resume Builder</h1>
+            </div>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About Us</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br><br>
+
+    <form action="" method="POST" id="resumeForm">
+        <div class="resumeinfo">
+            <h1><b>Skill</b></h1>
+            <p>Add a few skills to show your employer what your capable of</p><br>
+            <ul id="skill_list">
+                <!-- The initial education fields -->
+                <li>
+                    {{ resume_form.skill.label }} <br>
+                    {{ resume_form.skill() }}
+                </li>
+                <li>
+                    {{ resume_form.skill.label }} <br>
+                    {{ resume_form.skill() }}
+                </li>
+                <li>
+                    {{ resume_form.skill.label }} <br>
+                    {{ resume_form.skill() }}
+                </li>
+            </ul><br>
+            <submitbutton type = "button" id="submitbutton">Submit</submitbutton>
+            <addbutton type="button" id="addskillbutton">+</addbutton>
+        </div>
+
+    </form>
+    <br><br> <br><br><br><br><br><br>
+
+    <footer>
+        <div class="footer-content">
+            <ul class="social-links">
+                <li><a href="#"><img src="{{ url_for('static', filename='facebook-icon.png') }}" alt="Facebook"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='twitter-icon.png') }}" alt="Twitter"></a></li>
+                <li><a href="#"><img src="{{ url_for('static', filename='linkedin-icon.png') }}" alt="LinkedIn"></a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+         src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"
+            document.addEventListener("DOMContentLoaded", function () {
+        var submitbutton = document.getElementById("submitbutton");
+    
+        submitbutton.addEventListener("click", function () {
+            // Redirect to the new page 
+            window.location.href = "/";
+        });
+    });
+
+
+       document.addEventListener("DOMContentLoaded", function () {
+    var skill_list = document.getElementById("skill_list");
+    var addskillbutton = document.getElementById("addskillbutton");
+
+    addskillbutton.addEventListener("click", function () {
+        var newEducationFields = document.createElement("ul");
+        newEducationFields.innerHTML = `
+            <li>
+                <li>
+                    {{ resume_form.skill.label }} <br>
+                    {{ resume_form.skill() }}
+                </li>
+                <deletebutton class="deleteEducationButton">Delete</deletebutton>
+            </li>
+        `;
+
+        skill_list.appendChild(newEducationFields);
+        // Attach a click event to the newly added delete button
+        var deleteButton = newEducationFields.querySelector(".deleteEducationButton");
+        deleteButton.addEventListener("click", function () {
+            skill_list.removeChild(newEducationFields);
+        });
+    });
+});
+
+    </script>
+
+</body2>
+</html>
+
